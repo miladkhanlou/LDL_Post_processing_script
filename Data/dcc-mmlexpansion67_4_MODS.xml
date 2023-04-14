@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<mods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/mods/v3" xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" version="3.5" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-5.xsd">
+  <titleInfo>
+    <title>Another View Moss Memorial Library in 1967</title>
+  </titleInfo>
+  <name type="corporate">
+    <namePart>Delgado Community College</namePart>
+    <role>
+      <roleTerm type="text">Repository</roleTerm>
+    </role>
+  </name>
+  <name type="corporate">
+    <namePart>Moss Memorial Library</namePart>
+    <role>
+      <roleTerm type="text">Contributor</roleTerm>
+    </role>
+  </name>
+  <name type="corporate">
+    <namePart>Delgado Community College</namePart>
+    <role>
+      <roleTerm type="text">Contributor</roleTerm>
+    </role>
+  </name>
+  <typeOfResource>still image</typeOfResource>
+  <genre authority="marcgt">government publication</genre>
+  <originInfo>
+    <dateCreated encoding="marc" point="start">1967-01-01</dateCreated>
+    <dateCreated>1967-01-01</dateCreated>
+    <issuance>monographic</issuance>
+  </originInfo>
+  <abstract type="Summary" displayLabel="Description">This is a small photograph showing the library in the 1960s.</abstract>
+  <note type="content" displayLabel="Note">The original materials are housed in the archives of Delgado Community College Library.</note>
+  <subject>
+    <name type="corporate">
+      <namePart>Moss Memorial Library</namePart>
+    </name>
+  </subject>
+  <subject>
+    <name type="corporate">
+      <namePart>Delgado Community College</namePart>
+    </name>
+  </subject>
+  <location>
+    <physicalLocation>Delgado Community College Library</physicalLocation>
+    <physicalLocation displayLabel="Physical Location" xlink:href="https://dcc.libguides.com/library">Delgado Community College Library</physicalLocation>
+  </location>
+  <relatedItem type="host">
+    <titleInfo>
+      <title>1967 Expansion</title>
+    </titleInfo>
+    <titleInfo displayLabel="Digital Collection">
+      <title>1967 Expansion</title>
+    </titleInfo>
+  </relatedItem>
+  <recordInfo>
+    <recordOrigin>Converted from MARCXML to MODS version 3.5 using MARC21slim2MODS3-5.xsl
+				(Revision 1.106 2014/12/19)</recordOrigin>
+    <languageOfCataloging>
+      <languageTerm type="code" authority="iso639-2b">eng</languageTerm>
+    </languageOfCataloging>
+  </recordInfo>
+  <identifier type="local" displayLabel="Item Number">dcc-mmlexpansion67-003</identifier>
+  <name type="corporate" displayLabel="Contributing Repository">
+    <namePart>Delgado Community College</namePart>
+    <role>
+      <roleTerm type="text" authority="marcrelator" authorityURI="http://id.loc.gov/vocabulary/relators" valueURI="http://id.loc.gov/vocabulary/relators/rps">Repository</roleTerm>
+    </role>
+  </name>
+  <physicalDescription>
+    <digitalOrigin>digitized other analog</digitalOrigin>
+  </physicalDescription>
+  <accessCondition type="use and reproduction" displayLabel="Rights Information">Physical rights are retained by Delgado Community College. Copyright is retained in accordance with U.S. copyright laws.</accessCondition>
+  <accessCondition type="use and reproduction" displayLabel="Contact Information">For information or permission to use/publish, contact cpcir@dcc.edu.</accessCondition>
+</mods>
