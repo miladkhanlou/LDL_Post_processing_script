@@ -13,8 +13,8 @@ RDF_paths = []
 for filenames in os.listdir(Paths):
     OBJ_paths.append(filenames) #EDIT >>> We will not concat the fileNames with the path! Only use the path if we wantour data in the separate folders
     RDF_paths.append(Paths) #EDIT >>> For second part, RDF processing
-print("These are all the files we use to process rdfs and OBJS: \n{}".format(OBJ_paths))
-print("------------------------------------------------")
+# print("These are all the files we use to process rdfs and OBJS: \n{}".format(OBJ_paths))
+# print("------------------------------------------------")
 
 ###### Getting a Collection name ######
 files = listdir('csv/')
@@ -23,8 +23,8 @@ direct = []
 for file in files:
     if file.endswith(".csv"):
         direct.append(file)
-print("This will be the initial CSV Metadata,which is xml2workbench output, we use to process: \n{}".format(direct))
-print("------------------------------------------------")
+# print("This will be the initial CSV Metadata,which is xml2workbench output, we use to process: \n{}".format(direct))
+# print("------------------------------------------------")
 
 #################### 2) Getting data and fill the file column if files exist in the Data directory ########################
 def input_directory(directory, OBJS):
@@ -57,8 +57,8 @@ def input_directory(directory, OBJS):
             file_column.append("Data/{}{}".format(fileNames,fileformat)) #EDIT >>> deleted Collection form formating the name because we do not have a folder consist of data for each collection
         else:
             file_column.append("")
-    print("This will be concat of the the name of File column generated for the files that are Objects: \n{}".format(file_column))
-    print("------------------------------------------------")
+    # print("This will be concat of the the name of File column generated for the files that are Objects: \n{}".format(file_column))
+    # print("------------------------------------------------")
 
 
     LDLdf["file"] = file_column
@@ -78,7 +78,7 @@ def run_name_change():
     for csvs, OBJs in zip(direct, OBJ_paths):
         data = input_directory(csvs,OBJs)
         
-        nameChange = data.to_csv("/Users/mfatol1/Documents/LDL Migration/Post_Processing/csv/output/{}".format(csvs), index=False)
+        nameChange = data.to_csv("/Users/mfatol1/Documents/LDL Migration/git/Post_processing_script/csv/output/{}".format(csvs), index=False)
         
     return data
 run_name_change()
@@ -88,7 +88,7 @@ run_name_change()
 
 def inputrdf(RDF_dir, dir):
     data = glob.glob("{}/*.rdf".format(RDF_dir))
-    print("List of the RDFs in the folder: \n{}".format(data))
+    # print("List of the RDFs in the folder: \n{}".format(data))
     print("------------------------------------------------")
     tags = [] #getting none-splitted
     val = [] #adding values to
@@ -201,8 +201,8 @@ def inputrdf(RDF_dir, dir):
 
     
 
-    parentChild = LDL2df.to_csv("/Users/mfatol1/Documents/LDL Migration/Post_Processing/csv/output/{}".format(dir), index=False)
-    return parentChild
+    # # parentChild = LDL2df.to_csv("/Users/mfatol1/Documents/LDL Migration/git/Post_processing_script/csv/output/{}".format(dir), index=False)
+    # return parentChild
 
 def run():
     for path, dir in zip(RDF_paths, direct):

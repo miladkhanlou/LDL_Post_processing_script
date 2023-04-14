@@ -1,0 +1,12 @@
+
+<rdf:RDF xmlns:fedora="info:fedora/fedora-system:def/relations-external#" xmlns:fedora-model="info:fedora/fedora-system:def/model#" xmlns:islandora="http://islandora.ca/ontology/relsext#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about="info:fedora/lsu-ag-agexp:8669">
+    <islandora:isPageOf rdf:resource="info:fedora/lsu-ag-agexp:8656"></islandora:isPageOf>
+    <islandora:isSequenceNumber>13</islandora:isSequenceNumber>
+    <islandora:isPageNumber>13</islandora:isPageNumber>
+    <islandora:isSection>1</islandora:isSection>
+    <fedora:isMemberOf rdf:resource="info:fedora/lsu-ag-agexp:8656"></fedora:isMemberOf>
+    <fedora-model:hasModel rdf:resource="info:fedora/islandora:pageCModel"></fedora-model:hasModel>
+    <islandora:deferDerivatives>true</islandora:deferDerivatives>
+  </rdf:Description>
+</rdf:RDF>
