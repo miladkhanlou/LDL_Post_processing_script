@@ -17,78 +17,78 @@ print("------------------------------------------------")
 ###### Getting a Collection name ######
 files = listdir('csv/')
 files.sort()
-direct = []
+path_to_csvs = []
 for file in files:
     if file.endswith(".csv"):
-        direct.append(file)
-print("This will be the initial CSV Metadata,which is xml2workbench output, we use to process: \n{}".format(direct))
-print("------------------------------------------------")
+        path_to_csvs.append(file)
+print("This will be the initial CSV Metadata,which is xml2workbench output, we use to process: \n{}".format(path_to_csvs))
+print("++++++++++++++++++++++++++++++++++++++++++++++++")
 
 #################### 2) Getting data and fill the file column if files exist in the Data directory ########################
-def input_directory(directory, OBJS):
-    Collection = directory.split(".")[0]
-    LDLdf = pd.DataFrame(pd.read_csv(directory))
-    LDLdf.rename(columns= {'PID' : 'id'},  inplace = True)
-    coll_name = []
-    coll_num = []
-    fileName = []
-    id_to_list = LDLdf["id"].tolist() ###Putting the elements of id column to a list###
-    for IDs in id_to_list:
-        splitted_IDs= IDs.split(':')
-        coll_name.append(splitted_IDs[0])
-        coll_num.append(splitted_IDs[1])
-    for s in range(len(coll_name)):
-        fileName.append("{}_{}_OBJ".format(coll_name[s], coll_num[s]))
-    ObjFiles = [] #getting the names of the OBJ FILES 
-    fileformat = "" #getting the file type of OBJ FILES
+# def input_directory(csvs, OBJS):
+#     Collection = csvs.split(".")[0]
+#     print(csvs) ##test
+#     LDLdf = pd.DataFrame(pd.read_csv(csvs, encoding='latin-1'))
+#     LDLdf.rename(columns= {'PID' : 'id'},  inplace = True)
+#     coll_name = []
+#     coll_num = []
+#     file_name = []
+#     id_to_list = LDLdf["id"].tolist() ###Putting the elements of id column to a list###
+#     for IDs in id_to_list:
+#         splitted_IDs= IDs.split(':')
+#         coll_name.append(splitted_IDs[0])
+#         coll_num.append(splitted_IDs[1])
+#     for colls in range(len(coll_name)):
+#         file_name.append("{}_{}_OBJ".format(coll_name[colls], coll_num[colls]))
+        
+#     ObjFiles = [] #getting the names of the OBJ FILES 
+#     file_format = "" #getting the file type of OBJ FILES
     
-    # FILES = os.listdir(OBJS)         #EDIT >>>Do not need to get into the folder as we will not have folders
-    for file in OBJ_paths:
-        if "OBJ" in file:
-            ObjFiles.append(file.split(".")[0])
-            fileformat =  ".{}".format(file.split(".")[1])
+#     FILES = os.listdir(OBJS)         #EDIT >>>Do not need to get into the folder as we will not have folders
+#     # for file in OBJS:              #EDIT >>> Use this instead of FILES = os.listdir(OBJS) as we do not need it to get into the folder as we will not have sub folders
+#     for file in FILES:
+#         if "OBJ" in file:
+#             ObjFiles.append(file.split(".")[0])
+#             file_format =  ".{}".format(file.split(".")[1])
 
-    #Filling the file_column list to fill the file column:
-    file_column = []
-    for fileNames in fileName:
-        if fileNames in ObjFiles:
-            file_column.append("Data/{}{}".format(fileNames,fileformat)) #EDIT >>> deleted Collection form formating the name because we do not have a folder consist of data for each collection
-        else:
-            file_column.append("")
-    print("This will be concat of the the name of File column generated for the files that are Objects: \n{}".format(file_column))
-    print("------------------------------------------------")
+#     #Filling the file_column list to fill the file column:
+#     file_column = []
+#     for files in file_name:
+#         if files in ObjFiles:
+#             file_column.append("Data/{}{}".format(files,file_format)) #EDIT >>> deleted Collection form formating the name because we do not have a folder consist of data for each collection
+#         else:
+#             file_column.append("")
+#     print("This will be concat of the the name of File column generated for the files that are Objects: \n{}".format(file_column))
+#     print("------------------------------------------------")
 
 
-    LDLdf["file"] = file_column
-    del fileformat
-    LDLdf["parent_id"] = ""
-    LDLdf["field_weight"] = ""
-    LDLdf["field_member_of"] = ""
-    LDLdf["field_model"] = "32" #The number of resource type according to collection, obj or any other kind in the resource types in drupal
-    LDLdf["field_access_terms"] = "14" #customized field for groups, which is a number associated with the group names number
-    LDLdf["field_resource_type"] = "4" #The number of resource type according to collection, obj or any other kind in the resource types in drupal
-    LDLdf.drop("field_date_captured", inplace=True ,axis= 1, errors='ignore')
-    LDLdf.drop("field_is_preceded_by", inplace=True ,axis= 1,errors='ignore')
-    LDLdf.drop("field_is_succeeded_by", inplace=True ,axis= 1,errors='ignore')
-    return LDLdf
+#     LDLdf["file"] = file_column
+#     del file_format
+#     LDLdf["parent_id"] = ""
+#     LDLdf["field_weight"] = ""
+#     LDLdf["field_member_of"] = ""
+#     LDLdf["field_model"] = "32" #The number of resource type according to collection, obj or any other kind in the resource types in drupal
+#     LDLdf["field_access_terms"] = "14" #customized field for groups, which is a number associated with the group names number
+#     LDLdf["field_resource_type"] = "4" #The number of resource type according to collection, obj or any other kind in the resource types in drupal
+#     LDLdf.drop("field_date_captured", inplace=True ,axis= 1, errors='ignore')
+#     LDLdf.drop("field_is_preceded_by", inplace=True ,axis= 1,errors='ignore')
+#     LDLdf.drop("field_is_succeeded_by", inplace=True ,axis= 1,errors='ignore')
+#     return LDLdf
 
-#CREATE OUTPUT CSV
-def run_name_change():
-    for csvs, OBJs in zip(direct, OBJ_paths):
-        data = input_directory(csvs,OBJs)
-        
-        nameChange = data.to_csv("csv/output/{}".format(csvs), index=False)
-        
-    return data
-run_name_change()
-
+# #CREATE OUTPUT CSV
+# def run_name_change():
+#     for csvs, OBJs in zip(path_to_csvs, OBJ_paths):
+#         data = input_directory(csvs,OBJs)
+#         nameChange = data.to_csv("csv/output/{}".format(csvs), index=False)
+#     return nameChange
+# run_name_change()
 
 #################### 2) fill field_member_of, parent_id, field_weight column ########################
 
-def inputrdf(RDF_dir, dir):
+def input_RDF(RDF_dir, dir):
     data = glob.glob("{}/*.rdf".format(RDF_dir))
-    print("List of the RDFs in the folder: \n{}".format(data))
-    print("------------------------------------------------")
+    print("List of the RDF files in the directory: \n{}".format(data))
+    print("********************************")
     tags = [] #getting none-splitted
     val = [] #adding values to
     tag_name = [] #ALL the Tags in the rdf
@@ -96,6 +96,7 @@ def inputrdf(RDF_dir, dir):
     text = []
     weightList= []
     data.sort()
+    
     for dirs in data:
         rdf = ET.parse("{}".format(dirs))
         itter = rdf.iter()
@@ -143,6 +144,7 @@ def inputrdf(RDF_dir, dir):
     field_member_of = []
     parrent = []
     count = []
+    
     for q in new:
         if "isPageOf" in q[0]:
             print(q)
@@ -180,10 +182,10 @@ def inputrdf(RDF_dir, dir):
 
                 if "isMemberOfCollection" not in new[r+1][0]:
                     field_member_of.append("")
-
+                    
     #Collection:
-    print("collection RDF directory: {}/ NO SUBDIRECTORY!".format(RDF_dir)) #directory of data
-    print("Metadata csv: {}".format(dir)) #directory of csv
+    print("RDF directory: {}".format(RDF_dir)) #directory of data
+    print("CSV Metadata: {}".format(dir)) #directory of csv
     #info:
     print("number of Meta list: ({})".format(len(new))) #LENGH OF "new" LIST CONTAINING ALL 2 TAGS
     print("Lenght of field_member_of(collections): ({})".format(len(field_member_of))) #Lenght of field_member_of(collections)
@@ -191,20 +193,20 @@ def inputrdf(RDF_dir, dir):
     print("Lenght of parrent names: ({})".format(len(parrent))) #Lenght of parrent names
     print("--------------------------------------------------------------------------------------------------------------------")
 
+
     LDL2 = pd.read_csv("csv/output/{}.csv".format(dir.split('.')[0])) #EDIT >>> Changed the format from spliting the name of the directory to csv file, because we do not have collection folder containing RDFs, so we split the name after "/" which is the name of the directory (Data/Collection_Name) 
-    LDL2df = pd.DataFrame(LDL2)     
+    LDL2df = pd.DataFrame(LDL2)
     LDL2df["parent_id"] = parrent    
     LDL2df["field_weight"] = weight
     LDL2df["field_edtf_date_created"] = ""
     LDL2df["field_linked_agent"] = ""
-
     
 
     parentChild = LDL2df.to_csv("csv/output/LDL_WB_{}".format(dir), index=False)
     return parentChild
 
 def run():
-    for path, dir in zip(OBJ_paths, direct):
-        input = inputrdf(path, dir)
+    for path, dir in zip(OBJ_paths, path_to_csvs):
+        input = input_RDF(path, dir)
     return input
 run()

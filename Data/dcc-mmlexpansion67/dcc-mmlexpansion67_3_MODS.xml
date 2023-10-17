@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <titleInfo>
+    <title>Moss Memorial Library in 1967</title>
+  </titleInfo>
+  <identifier type="local" displayLabel="Item Number">dcc-mmlexpansion-002</identifier>
+  <name type="corporate" displayLabel="Contributing Repository">
+    <namePart>Delgado Community College</namePart>
+    <role>
+      <roleTerm type="text" authority="marcrelator" authorityURI="http://id.loc.gov/vocabulary/relators" valueURI="http://id.loc.gov/vocabulary/relators/rps">Repository</roleTerm>
+    </role>
+  </name>
+  <name type="corporate">
+    <namePart>Moss Memorial Library</namePart>
+    <role>
+      <roleTerm type="text" authority="marcrelator">Contributor</roleTerm>
+    </role>
+    <role>
+      <roleTerm type="code" authority="marcrelator">ctb</roleTerm>
+    </role>
+  </name>
+  <name type="corporate">
+    <namePart>Delgado Community College</namePart>
+    <role>
+      <roleTerm type="text" authority="marcrelator">Contributor</roleTerm>
+    </role>
+    <role>
+      <roleTerm type="code" authority="marcrelator">ctb</roleTerm>
+    </role>
+  </name>
+  <originInfo>
+    <dateCreated encoding="w3cdtf">1967-01-01</dateCreated>
+  </originInfo>
+  <subject displayLabel="Name Subject">
+    <name type="corporate">
+      <namePart>Moss Memorial Library</namePart>
+    </name>
+  </subject>
+  <subject displayLabel="Name Subject">
+    <name type="corporate">
+      <namePart>Delgado Community College</namePart>
+    </name>
+  </subject>
+  <abstract displayLabel="Description">This is a small photograph showing the library in the 1960s.</abstract>
+  <note type="content" displayLabel="Note">The original materials are housed in the archives of Delgado Community College Library.</note>
+  <typeOfResource>still image</typeOfResource>
+  <physicalDescription>
+    <digitalOrigin>digitized other analog</digitalOrigin>
+  </physicalDescription>
+  <relatedItem type="host">
+    <titleInfo displayLabel="Digital Collection">
+      <title>1967 Expansion</title>
+    </titleInfo>
+  </relatedItem>
+  <location>
+    <physicalLocation displayLabel="Physical Location" xlink:href="https://dcc.libguides.com/library">Delgado Community College Library</physicalLocation>
+  </location>
+  <accessCondition type="use and reproduction" displayLabel="Rights Information">Physical rights are retained by Delgado Community College. Copyright is retained in accordance with U.S. copyright laws.</accessCondition>
+  <accessCondition type="use and reproduction" displayLabel="Contact Information">For information or permission to use/publish, contact cpcir@dcc.edu.</accessCondition>
+  <recordInfo>
+    <languageOfCataloging>
+      <languageTerm type="code" authority="iso639-2b">eng</languageTerm>
+    </languageOfCataloging>
+  </recordInfo>
+</mods>

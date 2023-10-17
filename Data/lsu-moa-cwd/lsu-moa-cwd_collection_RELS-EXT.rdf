@@ -1,0 +1,7 @@
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:fedora="info:fedora/fedora-system:def/relations-external#" xmlns:fedora-model="info:fedora/fedora-system:def/model#" xmlns:islandora="http://islandora.ca/ontology/relsext#">
+  <rdf:Description rdf:about="info:fedora/lsu-moa-cwd:collection">
+    <fedora:isMemberOfCollection rdf:resource="info:fedora/islandora:root"></fedora:isMemberOfCollection>
+    <fedora-model:hasModel rdf:resource="info:fedora/islandora:collectionCModel"></fedora-model:hasModel>
+  </rdf:Description>
+</rdf:RDF>

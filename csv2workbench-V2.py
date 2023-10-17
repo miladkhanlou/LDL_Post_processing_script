@@ -204,8 +204,8 @@ def inputrdf(RDF_dir, dir):
     parentChild = LDL2df.to_csv("/Users/mfatol1/Documents/LDL Migration/Post_Processing/csv/output/{}".format(dir), index=False)
     return parentChild
 
-def run():
-    for path, dir in zip(RDF_paths, direct):
-        input = inputrdf(path, dir)
-    return input
-run()
+# def run():
+#     for path, dir in zip(RDF_paths, direct):
+#         input = inputrdf(path, dir)
+#     return input
+# run()
