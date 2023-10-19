@@ -1,11 +1,20 @@
-from dataclasses import replace
-from fileinput import filename
 import pandas as pd
 import xml.etree.ElementTree as ET
 import glob
 from os import listdir , sep, path
 import os
 import argparse
+from dateutil import parser
+
+
+def process_command_line_arguments():
+    parser = argparse.ArgumentParser(description='Post Processing Process For LDL Content Migration Using Islandora Workbench')
+    parser.add_argument('-c', '--csv_directory', type=str, help='Path to metadata', required=False)
+    parser.add_argument('-f', '--files_directory', type=str, help='Path to the files', required=False)
+    parser.add_argument('-o', '--output_directory', type=str, help='Path to the output csv containing paths, frequency, and error reports', required=False)
+    args = parser.parse_args()
+    print(args)
+    return args
 
 ###### Getting a Directory path with Data/"CollectionName" ###### all_files= "Data/" , metadata_CSV = 'csv/'
 def files_directories(all_files):
@@ -27,13 +36,7 @@ def csv_directories(metadata_csv):
     return(path_to_csvs)
 
 
-def process_command_line_arguments():
-    parser = argparse.ArgumentParser(description='Post Processing Process For LDL Content Migration Using Islandora Workbench')
-    parser.add_argument('-c', '--csv_directory', type=str, help='Path to metadata', required=False)
-    parser.add_argument('-f', '--files_directory', type=str, help='Path to the files', required=False)
-    parser.add_argument('-o', '--output_directory', type=str, help='Path to the output csv containing paths, frequency, and error reports', required=False)
-    args = parser.parse_args()
-    return args
+
 ################### 2) Getting data and fill the file column if files exist in the Data directory ########################
 def input_directory(csvs, OBJS):
     Collection = csvs.split(".")[0]
@@ -196,18 +199,18 @@ def input_RDF(RDF_dir, LDL):
     print("Lenght of weight(child numbers): ({})".format(len(weight))) #Lenght of field_member_of(collections)
     print("Lenght of parrent names: ({})".format(len(parrent))) #Lenght of parrent names
     print("--------------------------------------------------------------------------------------------------------------------")
-
+    
 
     LDL["parent_id"] = parrent    
     LDL["field_weight"] = weight
     LDL["field_edtf_date_created"] = ""
     LDL["field_linked_agent"] = ""
-    print('worked')
+    print('Data is written in dataframe ...')
     return LDL
     
 def write(csv, LDL, loc):
     Workbench_ready_csv = LDL.to_csv("{}/LDL_WB_{}".format(loc, csv), index=False)
-    print('written to csv')
+    print('written to csv ...')
     return Workbench_ready_csv
 
 def main():
@@ -218,6 +221,4 @@ def main():
         LDLdf_1 = input_directory(csvs,OBJs)
         input = input_RDF(OBJs,LDLdf_1)
         output = write(csvs, input,args.output_directory)
-        
-        
-#Fix input csv and File Directory!
+main()
