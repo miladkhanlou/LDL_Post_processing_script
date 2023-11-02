@@ -37,9 +37,8 @@ def csv_directories(metadata_csv):
 
 
 ################### 2) Getting data and fill the file column if files exist in the Data directory ########################
-def input_directory(csvs, OBJS):
+def objects_to_df(csvs, OBJS):
     Collection = csvs.split(".")[0]
-    print(csvs) ##test
     LDLdf = pd.DataFrame(pd.read_csv(csvs,encoding='utf-8'))
     LDLdf.rename(columns= {'PID' : 'id'},  inplace = True)
     coll_name = []
@@ -88,14 +87,13 @@ def input_directory(csvs, OBJS):
     
     #fill nul values
     LDLdf = LDLdf.apply(lambda col: col.fillna(''))
-    print(LDLdf.head)
     return LDLdf
 
 
 
 #################### 2) fill field_member_of, parent_id, field_weight column ########################
 
-def input_RDF(RDF_dir, LDL):
+def process_rdf(RDF_dir, LDL):
     data = glob.glob("{}/*.rdf".format(RDF_dir))
     # print("List of the RDF files in the directory: \n{}".format(data))
     print("********************************")
@@ -192,39 +190,33 @@ def input_RDF(RDF_dir, LDL):
 
                 if "isMemberOfCollection" not in new[r+1][0]:
                     field_member_of.append("")
-                    
-    # #Collection:
-    # print("RDF directory: {}".format(RDF_dir)) #directory of data
-    # #info:
-    # print("number of Meta list: ({})".format(len(new))) #LENGH OF "new" LIST CONTAINING ALL 2 TAGS
-    # print("Lenght of field_member_of(collections): ({})".format(len(field_member_of))) #Lenght of field_member_of(collections)
-    # print("Lenght of weight(child numbers): ({})".format(len(weight))) #Lenght of field_member_of(collections)
-    # print("Lenght of parrent names: ({})".format(len(parrent))) #Lenght of parrent names
-    # print("--------------------------------------------------------------------------------------------------------------------")
-            
     LDL["parent_id"] = parrent    
     LDL["field_weight"] = weight
     LDL["field_edtf_date_created"] = ""
     LDL["field_linked_agent"] = ""
-    # change the date to EDTF format
-    LDL['field_date'] = pd.to_datetime(LDL['field_date']).dt.strftime('%Y-%m-%d')
-    print(LDL[['field_date', 'id']])
-    print('Data is written in dataframe ...')
-
     return LDL
-
-def write(csv, input_df, loc):
-    print(input_df[['field_date', 'id']])
-    Workbench_ready_csv = input_df.to_csv("{}/LDL_WB_{}".format(loc, csv), index=False)
+   
+def to_csv(csv, input_df, loc):
+    print("testing if the date time format is correct, format must be y/m/d ------>  {}".format(input_df['field_date'][1])) #making sure date time format is currect
+    file_location = "{}/LDL_WB_{}".format(loc, csv)
+    Workbench_ready_csv = input_df.to_csv(file_location, index=False)
     print('written to csv ...')
-    return Workbench_ready_csv
+    print(file_location)
+    return file_location
+
+# change the date to EDTF format
+def EDTF_conversion(df):
+    date_sr  = pd.to_datetime(df['field_date'])
+    df['field_date'] = date_sr.dt.strftime('%Y-%m-%d')
+    return df
 
 def main():
     args = process_command_line_arguments()
     path_to_csvs = csv_directories(args.csv_directory)
     OBJ_paths = files_directories(args.files_directory)
     for csvs, OBJs in zip(path_to_csvs, OBJ_paths):
-        LDLdf_1 = input_directory(csvs,OBJs)
-        input = input_RDF(OBJs,LDLdf_1)
-        output = write(csvs, input,args.output_directory)
+        processing_OBJs_to_df = objects_to_df(csvs,OBJs)
+        Relationship_to_df = process_rdf(OBJs,processing_OBJs_to_df)
+        process_dates = EDTF_conversion(Relationship_to_df)
+        output = to_csv(csvs, process_dates,args.output_directory)
 main()
